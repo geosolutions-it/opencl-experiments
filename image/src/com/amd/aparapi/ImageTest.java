@@ -300,17 +300,13 @@ public class ImageTest{
 				bandCombineKernel.setOutput(output);
 				bandCombineKernel.setInputBands(numBands);
 
-				
-				
-
-
 				// do subsampling.
 				downSampleKernel.put(input);
 				downSampleKernel.execute(Range.create3D(destW,destH,numBands));
-
+				downSampleKernel.get(output);
 				
 				// do bandcombine
-//				bandCombineKernel.put(output);
+				bandCombineKernel.put(output);
 				bandCombineKernel.execute(Range.create3D(destW,destH,numBands));
 				bandCombineKernel.get(output);
 				
